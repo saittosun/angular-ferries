@@ -1,0 +1,63 @@
+<div *ngIf="isLoading" class="center">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+
+<div class="bg-light" [ngClass]="{'transparent': isLoading}">
+  <div class="row bg-dark font-weight-bold text-white trip-header">
+    <div class="col">
+      <h1>TRIPS</h1>
+    </div>
+  </div>
+  <div *ngFor="let trip of selectedTrips; let i=index">
+    <h2>{{searchResponse.tripsWithDictionary[i].trips[0].origin.name | titlecase}}
+      <i class="fas fa-angle-right"></i>
+      {{searchResponse.tripsWithDictionary[i].trips[0].destination.name | titlecase}}
+    </h2>
+    <h4 class="trip-price"
+        *ngIf="!readyForInfo">
+        <strong>Trip Price :</strong>
+        {{ 0 / 100 | currency:"EUR":"symbol" }}
+    </h4>
+    <div *ngIf="getTrip(i) && readyForInfo">
+      <div class="d-flex">
+        <img [src]="getTrip(i).companyDictionary.imageUrl" />
+        <p class="ml-3 font-weight-bolder">
+          {{getTrip(i).companyDictionary.name}}
+        </p>
+      </div>
+      <p class="departure-time"><strong class="d-md-flex">Departure Date & Time: </strong>{{getTrip(i).departureDateTime}}</p>
+      <div>
+        <p class="ready-for-info" *ngFor="let passenger of trip.passengers; let passengerIndex = index">
+          <strong>Passenger {{passengerIndex+1}} : </strong>
+          {{ getPassengerPrice(i, passengerIndex) | currency:"EUR":"symbol"}}
+        </p>
+      </div>
+      <!-- <hr *ngIf="selectionModels[tripIndex].vehicles.length > 0"> -->
+      <div>
+        <p class="ready-for-info" *ngFor="let vehicle of selectedTrips[i].vehicles; let vehicleIndex = index">
+          <strong>Vehicle {{vehicleIndex+1}} : </strong>
+          {{accomodationPrices[i][passengerCount + vehicleIndex] / 100 |
+          currency:"EUR":"symbol" }}
+        </p>
+      </div>
+      <h4 *ngIf="totalPrice>1">
+        <strong>Trip Price :</strong>
+        {{prices[i] / 100 | currency:"EUR":"symbol" }}
+      </h4>
+    </div>
+  </div>
+  <div *ngIf="!readyForInfo">
+    <h3> <strong>Total Price :</strong> {{0 | currency:"EUR":"symbol" }} </h3>
+    <h3 *ngIf="readyForInfo"> <strong>Total Price :</strong> {{totalPrice / 100| currency:"EUR":"symbol" }} </h3>
+  </div>
+  <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
+  <button *ngIf="!readyForInfo" class="btn btn-outline-info btn-block"
+    [disabled]="!readyForCalculation"
+    (click)="calculatePrice()">
+    Calculate Price
+  </button>
+  <button *ngIf="readyForInfo" class="btn btn-outline-success btn-block" (click)="submit()">
+    Submit
+  </button>
+</div>

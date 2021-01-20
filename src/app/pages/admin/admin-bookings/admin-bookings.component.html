@@ -1,0 +1,59 @@
+<div *ngIf="isLoading" class="center">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="container" [ngClass]="{'transparent': isLoading}">
+
+  <div *ngIf="!errorMessage && allBookings" style="margin-top: 50px;">
+    <h1 class="text-center font-weight-bold">Bookings</h1>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Booking Date</th>
+          <th scope="col">Contact Name</th>
+          <th scope="col">Departure Date</th>
+          <th scope="col">Arrival Date</th>
+          <th scope="col">Origin</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Ferry Company</th>
+          <th scope="col">Passengers</th>
+          <th scope="col">Vehicles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let booking of allBookings.data; let i = index">
+            <tr *ngFor="let trip of booking.trips" (click)="onTripClick(booking.contactEmail, booking.id)" class="hover-item">
+              <th scope="row"> {{allBookings.meta.from + i}}</th>
+              <td class="text-center"> {{booking.bookingDate}} </td>
+              <td> {{booking.contactName}} </td>
+              <td class="text-center"> {{trip.departureDateTime}} </td>
+              <td class="text-center"> {{trip.arrivalDateTime}} </td>
+              <td> {{trip.originName}} </td>
+              <td> {{trip.destinationName}} </td>
+              <td> {{trip.companyDescription}} </td>
+              <td class="text-center"> {{booking.passengerCount}} </td>
+              <td class="text-center"> {{booking.vehicleCount ? booking.vehicleCount : 0}} </td>
+            </tr>
+          </ng-container>
+      </tbody>
+    </table>
+
+    <mat-paginator
+        (page)="handlePageEvent($event)"
+        [length]="length"
+        [pageSize]="pageSize"
+        [showFirstLastButtons]="showFirstLastButtons"
+        [pageSizeOptions]="pageSizeOptions"
+        [pageIndex]="pageIndex">
+    </mat-paginator>
+
+  </div>
+
+  <div *ngIf="errorMessage">
+    <h3 class="text-center text-danger" style="margin-top: 150px; margin-bottom: 350px;" > {{errorMessage}} </h3>
+  </div >
+
+    <!-- {{customer | json}} -->
+</div>
+

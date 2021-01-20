@@ -1,0 +1,31 @@
+<div *ngIf="isLoading" class="center">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<h3 class="error-message" *ngIf="errorMessage">{{errorMessage}}</h3>
+<div *ngIf="!errorMessage" class="row justify-content-center message-error" [ngClass]="{ transparent: isLoading }">
+  <div class="col-xl-9 col-lg-11 col-md-12 col-sm-12 col-12 search-box mt-5 py-3 px-3">
+    <app-trip-kind (tripKindEvent)="changeTripKind($event)"></app-trip-kind>
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div *ngFor="
+        let route of [].constructor(searchForm.tripCount + 1);
+        let i = index">
+          <app-routes *ngIf="!(searchForm.tripCount == 1 && i == 1)" (routSelectEvent)="changeRoutes($event)"
+            [searchForm]="searchForm" [origins]="origins" [index]="i" [isSubmitted]="isSubmitted"></app-routes>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+        <div *ngFor=" let route of [].constructor(searchForm.tripCount + 1);  let i = index">
+          <app-trip-date class="app-trip-date" (dateSelectEvent)="changeDates($event)"
+             [searchForm]="searchForm" [index]="i" [isSubmitted]="isSubmitted"></app-trip-date>
+        </div>
+      </div>
+      <app-passenger-count class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12" (passengerOrVehicleSelectEvent)="changeCounts($event)"></app-passenger-count>
+    </div>
+    <button class="btn btn-outline-light float-right" type="button" (click)="submit()">
+      Submit
+    </button>
+  </div>
+</div>
+

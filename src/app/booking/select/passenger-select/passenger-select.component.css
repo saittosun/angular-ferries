@@ -1,0 +1,25 @@
+.passenger-select {
+ margin-left: 0;
+}
+
+::ng-deep .mat-form-field {
+ padding-left: 0;
+}
+
+::ng-deep .accomodation-select .mat-form-field {
+ padding-left: 0;
+}
+
+::ng-deep .passenger-discount-select .mat-form-field {
+ width: -webkit-fill-available;
+}
+
+.passenger-discount-select {
+ padding-left: 0;
+}
+
+@media (max-width: 991px) {
+ ::ng-deep .mat-form-field-wrapper {
+  font-size: 10px;
+ }
+}

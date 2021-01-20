@@ -1,0 +1,5 @@
+export enum BedType {
+  NO_PREFERENCE = 'NO_PREFERENCE',
+  UPPER_BED = 'UPPER_BED',
+  LOWER_BED = 'LOWER_BED'
+}

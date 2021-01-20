@@ -1,0 +1,175 @@
+<div class="container mb-3">
+  <div class="row justify-content-center align-items-center mt-5">
+    <div class="col-12 col-md-8">
+      <form [formGroup]="infoForm" (ngSubmit)="onSubmit()">
+        <div class="row font-weight-bold">
+          <div class="col contacts">
+            <h3><strong>Contacts</strong></h3>
+            <div class="form-row">
+              <mat-form-field class="col-6 col-md-4" [ngClass]="{
+                'validation-control ': isControlInvalid(
+                  'contactEmail',
+                  null,
+                  null
+                )
+              }">
+                <mat-label class="font-weight-bold">Email</mat-label>
+                <input type="email" matInput formControlName="contactEmail" placeholder="Email" />
+              </mat-form-field>
+              <mat-form-field class="col-6 col-md-4" [ngClass]="{
+                'validation-control ': isControlInvalid(
+                  'contactPhoneNumber',
+                  null,
+                  null
+                )
+              }">
+                <mat-label class="font-weight-bold">Mobile number</mat-label>
+                <input type="text" matInput formControlName="contactPhoneNumber" placeholder="Mobile number" />
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input formControlName="subscribe" type="checkbox" class="form-check-input" id="subscribe" />
+                <label class="form-check-label align-middle" for="subscribe">Subscribe</label>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div formArrayName="passengers">
+            <div *ngFor="
+                let passenger of getPassengers();
+                let passengerIndex = index
+              " [formGroupName]="passengerIndex">
+              <div class="mb-2 mt-3 passengers">
+                <h3>
+                  <i class="mx-2 fas fa-male ml-2"></i> Passenger ({{
+                  passengerIndex + 1
+                  }})
+                </h3>
+              </div>
+              <div class="form-row">
+                <mat-form-field class="col-6 col-md-4" [ngClass]="{
+                  'validation-control ': isControlInvalid(
+                    'firstName',
+                    'passengers',
+                    passengerIndex
+                  )
+                }">
+                  <mat-label>First name</mat-label>
+                  <input type="text" matInput formControlName="firstName" placeholder="First name" />
+                </mat-form-field>
+                <mat-form-field class="col-6 col-md-4" [ngClass]="{
+                    'validation-control ': isControlInvalid(
+                      'lastName',
+                      'passengers',
+                      passengerIndex
+                    )
+                  }">
+                  <mat-label>Last name</mat-label>
+                  <input type="text" matInput formControlName="lastName" placeholder="Last name" />
+                </mat-form-field>
+              </div>
+              <div class="form">
+                <mat-form-field class="col-6 col-md-4 nationality" appearance="fill">
+                  <mat-label>Nationality</mat-label>
+                  <mat-select formControlName="nationality">
+                    <mat-option>
+                      <ngx-mat-select-search formControlName="nationalityInput" placeholderLabel="Form">
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="
+                        let country of countries
+                          | locationPipe
+                            : infoForm.value.passengers[passengerIndex]
+                                .nationalityInput
+                            : 'name'
+                      " [value]="country">
+                      {{ country.name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-6 col-md-4" appearance="fill" [ngClass]="{
+                    'validation-control ': isControlInvalid(
+                      'birthDate',
+                      'passengers',
+                      passengerIndex
+                    )
+                  }">
+                  <mat-label>Date of birth</mat-label>
+                  <input matInput [matDatepicker]="dp" formControlName="birthDate" (dateChange)="
+                      chosenDateHandler($event.value, passengerIndex, true)
+                    " />
+                  <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                  <mat-datepicker #dp [startAt]="startDate" startView="multi-year" panelClass="example-month-picker">
+                  </mat-datepicker>
+                </mat-form-field>
+                <p *ngIf="passengerDateMessage[passengerIndex]" class="text-danger">
+                  {{ passengerDateMessage[passengerIndex] }}
+                </p>
+                <div *ngIf="isTripToAbroad">
+                  <mat-form-field class="col-6 col-md-4" appearance="fill">
+                    <mat-label>Document Type</mat-label>
+                    <mat-select formControlName="documentType">
+                      <mat-option value="Passport">Passport</mat-option>
+                      <mat-option value="ID">ID</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-6 col-md-4" appearance="fill" [ngClass]="{
+                    'validation-control ': isControlInvalid(
+                      'documentExpirationDate',
+                      'passengers',
+                      passengerIndex
+                      )
+                    }">
+                    <mat-label>Document Expiration Date</mat-label>
+                    <input matInput [matDatepicker]="dp" formControlName="documentExpirationDate" (dateChange)="
+                        chosenDateHandler($event.value, passengerIndex, false)
+                      " />
+                    <mat-datepicker-toggle matSuffix [for]="dp"><i class="fas fa-calendar-day"></i>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #dp [startAt]="today" startView="multi-year" panelClass="example-month-picker">
+                    </mat-datepicker>
+                  </mat-form-field>
+                  <p *ngIf="documentDateMessage[passengerIndex]" class="text-danger">
+                    {{ documentDateMessage[passengerIndex] }}
+                  </p>
+                  <mat-form-field class="col-6 col-md-4" [ngClass]="{
+                    'validation-control ': isControlInvalid(
+                      'documentNumber',
+                      'passengers',
+                      passengerIndex
+                      )
+                    }">
+                    <mat-label>Document Number</mat-label>
+                    <input type="text" matInput formControlName="documentNumber" placeholder="Document Number" />
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div formArrayName="vehicles" class="mt-5">
+            <div *ngFor="let vehicle of getVehicles(); let vehicleIndex = index" [formGroupName]="vehicleIndex">
+              <div class="mt-3 mb-2">
+                <h3>
+                  <i class="mx-2 fas fa-car-alt ml-2"></i>Vehicle ({{
+                  vehicleIndex + 1
+                  }})
+                </h3>
+              </div>
+              <mat-form-field [ngClass]="{
+                'validation-control ': isControlInvalid(
+                  'plateNumber',
+                  'vehicles',
+                  vehicleIndex
+                  )
+                }">
+                <mat-label>License Plate</mat-label>
+                <input type="text" matInput formControlName="plateNumber" placeholder="Plate" />
+              </mat-form-field>
+            </div>
+          </div>
+        <button type="submit" class="btn btn-success">Confirm</button>
+      </form>
+    </div>
+  </div>
+</div>

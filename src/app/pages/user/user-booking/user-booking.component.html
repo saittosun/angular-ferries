@@ -1,0 +1,157 @@
+<div *ngIf="isLoading" class="center">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div *ngIf="!isLoading && booking" class="container">
+  <br /><br />
+  <h1 class="font-weight-bold text-center">Booking Confirmation</h1>
+  <div>
+    <table class="table">
+      <thead>
+        <tr class="table-info text-center">
+          <th scope="col">Liknoss Referance</th>
+          <th scope="col">Booking Id</th>
+          <th scope="col">Booking Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <td>{{ booking.crsReservationId }}</td>
+          <td>{{ booking.id }}</td>
+          <td>{{ booking.bookingDate }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngFor="let trip of booking.trips; let i = index">
+      <h1 class="font-weight-bold text-center">Journey {{ i + 1 }}</h1>
+
+      <table class="table">
+        <thead>
+          <tr class="table-light text-center">
+            <th scope="col">Origin</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Departure Date</th>
+            <th scope="col">Company</th>
+            <th scope="col">Name of Vessel</th>
+            <th scope="col">Company Reservation Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center">
+            <td>{{ trip.originName }}</td>
+            <td>{{ trip.destinationName }}</td>
+            <td>{{ trip.departureDateTime }}</td>
+            <td>{{ trip.companyDescription }}</td>
+            <td>{{ trip.vesselName }}</td>
+            <td>{{ trip.companyReservationCode }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+        <h3 class="font-weight-bold text-center">Passsengers</h3>
+        <table class="table">
+          <thead>
+            <tr class="table-light text-center">
+              <th scope="col">Name</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Birthdate</th>
+              <th scope="col">Document Type&Number</th>
+              <th scope="col">Accomodation Type</th>
+              <th scope="col">Discount</th>
+              <th scope="col">Ticket Number</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+
+          <tbody >
+              <tr *ngFor="let passenger of trip.passengers" class="text-center">
+                <td>{{ passenger.name }} {{ passenger.surname }}</td>
+                <td>{{ passenger.sex ? passenger.sex : ''}}</td>
+                <td>{{ passenger.birthdate ? passenger.birthdate : '' }}</td>
+                <td>{{ passenger.documentNumber ? passenger.documentType + '&' + passenger.documentNumber : '' }}</td>
+                <td>{{ passenger.passengerAccommodation.name ? passenger.passengerAccommodation.name : ''}}</td>
+                <td>{{ passenger.passengerDiscount.name ? passenger.passengerDiscount.name : '' }}</td>
+                <td>{{ passenger.passengerTicket.number ? passenger.passengerTicket.number : '' }}</td>
+                <td>{{ passenger.passengerPrice.total / 100 | currency:"EUR":"symbol"}}</td>
+              </tr>
+          </tbody>
+        </table>
+
+      <h3 class="font-weight-bold text-center">Vehicles</h3>
+      <table class="table">
+        <thead>
+          <tr class="table-light text-center">
+            <th scope="col">Vehicle</th>
+            <th scope="col">Length</th>
+            <th scope="col">Plate Number</th>
+            <th scope="col">Discount</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+
+        <tbody >
+          <tr *ngFor="let vehicle of trip.vehicles" class="text-center">
+            <td>{{vehicle.vehicleAccommodation.name ? vehicle.vehicleAccommodation.name : ""}}</td>
+            <td>{{ vehicle.length ? vehicle.length + "cm" : "" }}</td>
+            <td>{{ vehicle.plateNumber ? vehicle.plateNumber : "" }}</td>
+            <td>{{ vehicle.vehicleDiscount.name ? vehicle.vehicleDiscount.name : "" }}</td>
+            <td>{{ vehicle.vehiclePrice.total / 100 | currency:"EUR":"symbol"}} </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <br>
+      <div>
+        <h3 class="font-weight-bold">Contact</h3>
+        <p><strong>Name: </strong> {{booking.contactName}}</p>
+        <p><strong>Email: </strong> {{booking.contactEmail}}</p>
+        <p><strong>Phone: </strong> {{booking.contactPhone}}</p>
+        <hr>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2 class="font-weight-bold text-center">Prices</h2>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr class="text-center">
+            <th scope="col">Passenger Fare</th>
+            <th scope="col">Vehicle Fare</th>
+            <th scope="col">Tax and Fees</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+
+        <tbody >
+          <tr class="text-center">
+            <td>{{ passengerFare | currency:"EUR":"symbol" }}</td>
+            <td>{{ vehicleFare | currency:"EUR":"symbol" }}</td>
+            <td>{{ taxAndFees | currency:"EUR":"symbol"}}</td>
+            <td>{{ total / 100 | currency:"EUR":"symbol"}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <h2>General Information</h2>
+  <div>
+    <div>
+      <p>Thank you for booking with us.</p>
+      <p>This booking confirmation of your reservation, is not a ticket.</p>
+      <p>If you can print it!</p>
+    </div>
+    <div>
+      <p>WEB CHECK-IN (e-ticket)</p>
+      <p>
+        You can receive your tickets in electronic format within 48hours before
+        your departure.
+      </p>
+    </div>
+  </div>
+</div>

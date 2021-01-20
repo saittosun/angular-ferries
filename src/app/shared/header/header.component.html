@@ -1,0 +1,72 @@
+<header>
+  <nav class="navbar navbar-expand-lg nav-menu">
+    <a routerLink="home" class="navbar-brand text-light">
+      <img [src]="logoUrl" alt="logo" class="logo">
+    </a>
+    <button 
+      class="navbar-toggler nav-button" 
+      type="button" 
+      data-toggle="collapse" 
+      data-target="#myNavbar" 
+      aria-controls="myNavbar"
+      aria-expanded="false"
+      (click)="onToggleNavbarCollapsed()">
+      <!-- <span class="navbar-toggler-icon"></span> -->
+      <div class="bg-light line1"></div>
+      <div class="bg-light line2"></div>
+      <div class="bg-light line3"></div>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end font-weight-bold" [ngClass]="{ show: !navbarCollapsed }" id="myNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a routerLink="about-us" class="nav-link menu-item">About Us</a>
+        </li>
+        <li lass="nav-item">
+          <a routerLink="blog" class="nav-link menu-item">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="faq" class="nav-link menu-item">FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="get-in-touch" class="nav-link menu-item">Get In Touch</a>
+        </li>
+        <li *ngIf="!user" class="nav-item">
+          <a routerLink="login" class="nav-link menu-item">Login</a>
+        </li>
+        <li *ngIf="!user" class="nav-item">
+          <a routerLink="sign-up" class="nav-link menu-item">Sign Up</a>
+        </li>
+        <li *ngIf="user && user.role === 'User'" class="nav-item user-icon-user">
+          <i class="fas fa-user-circle menu-item"></i>
+          <a appDropdown #r="appDropDown"
+            class="nav-link menu-item dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{user.firstName}} {{user.lastName}}
+          </a>
+          <div class="dropdown-menu" [ngClass]="{'show':r.isOpen}" aria-labelledby="dropdownMenuButton">
+            <p routerLink="user/all-bookings" class="dropdown-item ">My Journeys</p>
+            <p class="dropdown-item " (click)="logout()">Logout</p>
+          </div>
+        </li>
+        <li *ngIf="user && user.role === 'Admin'" class="nav-item user-icon-header">
+          <i class="fas fa-user-circle menu-item"></i>
+          <a appDropdown #r="appDropDown" style="font-size: 1.2rem; padding-right: 4rem;"
+            class="nav-link menu-item dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{user.firstName}} {{user.lastName}}
+          </a>
+          <div class="dropdown-menu" [ngClass]="{'show':r.isOpen}" aria-labelledby="dropdownMenuButton">
+            <p routerLink="admin/users" class="dropdown-item ">List of Users</p>
+            <p routerLink="admin/bookings" class="dropdown-item ">List of Bookings</p>
+            <p routerLink="" class="dropdown-item ">Financial Data</p>
+            <p class="dropdown-item " (click)="logout()">Logout</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</header>
+<div>
+  <router-outlet></router-outlet>
+</div>

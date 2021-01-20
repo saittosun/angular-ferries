@@ -1,0 +1,32 @@
+.bg-img{
+  min-height: 100vh;
+  background: lightgrey;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+ }
+
+.bg-img > div {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+button {
+  width: 100%;
+  background: black;
+  color: black;
+}
+
+@media(min-width: 375px) and (max-width: 424px) {
+  button {
+    font-size: small;
+  }
+}
+
+@media(max-width: 374px) {
+  button {
+    font-size: x-small;
+    width: 110%;
+  }
+}

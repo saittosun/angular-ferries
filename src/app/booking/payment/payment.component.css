@@ -1,0 +1,71 @@
+.credit-card {
+  height: 55px; width: 140px; font-weight: bold;
+}
+
+
+.trip-payment {
+  margin-left: 0;
+}
+
+.clearfix h2, .clearfix p {
+  margin: 0;
+}
+
+.departure-date {
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+
+.selected-trips {
+  margin-bottom: 0.5rem;
+}
+
+.passenger-index {
+  font-size: 17px;
+}
+
+.passenger-card {
+  padding-bottom: 8px;
+  line-height: 13px;
+}
+
+.vehicle-card {
+  margin-bottom: 0.25rem;
+}
+
+.vehicle-card-header {
+  font-size: 17px;
+}
+
+.plate-card {
+  padding-bottom: 8px;
+  line-height: 0.5rem;
+}
+
+hr {
+  border: 2px solid black;
+}
+
+.is-confirmed-checkbox {
+  margin-top: 2rem;
+}
+
+.payment {
+  margin-bottom: 40px;
+}
+
+.payment-label {
+  margin-left: 5px;
+}
+
+.pay-with {
+  margin-bottom: 30px;
+}
+
+.pay-with-error-message {
+  color: red;
+}
+
+.pay-with-auto {
+  padding-top: 10px;
+}

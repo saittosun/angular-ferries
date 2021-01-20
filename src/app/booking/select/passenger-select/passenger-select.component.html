@@ -1,0 +1,26 @@
+<div class="row passenger-select" *ngFor="let dummy of [].constructor(passengerCount); let i = index">
+
+  <mat-form-field class="col-3" appearance="fill">
+    <mat-label>Gender</mat-label>
+    <mat-select [(ngModel)]="selectedGender" (selectionChange)="handleGenderChange(i)">
+      <div *ngFor="let gender of genders">
+        <mat-option [value]="gender">{{ gender }}</mat-option>
+      </div>
+    </mat-select>
+  </mat-form-field>
+
+  <app-accommodation-select class="col-6" (accommodationSelectEvent)="handleAvailabilityChange($event)"
+    (passengerTypeSelectEvent)="handlePassengerTypeChange($event)" [index]="i" [passengerCount]="passengerCount"
+    [passengerTypes]="trip.companyDictionary.passengerTypes"
+    [accommodationAvailabilities]="trip.accommodationAvailabilities"
+    [selectedAccommodationAvailabilities]="selectedAccommodationAvailabilities"
+    [selectedPassengerTypes]="selectedPassengerTypes"
+    [vehicleCount]="vehicleCount">
+  </app-accommodation-select>
+
+  <app-passenger-discount-select class="col-3 passenger-discount-select" [index]="i" [selectedPassengerTypeIndex]="selectedPassengerTypeIndex[i]"
+    (passengerDiscountChangeEvent)="handlePassengerDiscountChange($event)"
+    [passengerCount]="passengerCount" [passengerTypes]="trip.companyDictionary.passengerTypes">
+  </app-passenger-discount-select>
+
+</div>

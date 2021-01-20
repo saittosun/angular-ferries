@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.transparent {
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.center {
+  width: Xu;
+  height: Yu;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -(X/2)u;
+  margin-top: -(Y/2)u;
+}
+
+.error-message{
+  color: red;
+  text-align: center;
+  margin-top: 20%;
+  font-weight: bold;
+}

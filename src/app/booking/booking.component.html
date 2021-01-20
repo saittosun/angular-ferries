@@ -1,0 +1,21 @@
+<div class="bg-img py-5" >
+  <div class="row justify-content-center">
+    <div class="col-3 col-md-2 col-lg-2">
+      <button type="button" (click)="changePhase(0)" class="rounded-pill btn btn-secondary text-white">Search</button>
+    </div>
+    <div class="col-3 col-md-2 col-lg-2">
+      <button type="button" [disabled]="!isSelectEnabled" (click)="changePhase(1)" class="rounded-pill btn btn-secondary text-white">Select</button>
+    </div>
+    <div class="col-3 col-md-2 col-lg-2">
+      <button type="button" [disabled]="!isInfoEnabled" (click)="changePhase(2)" class="rounded-pill btn btn-secondary text-white">Info</button>
+    </div>
+    <div class="col-3 col-md-2 col-lg-2">
+      <button type="button" [disabled]="!isPaymentEnabled" (click)="changePhase(3)" class="rounded-pill btn btn-secondary text-white">Pay</button>
+    </div>
+  </div>
+
+  <app-search [hidden]="bookingPhase!==0"></app-search>
+  <app-select *ngIf="isSelectEnabled" [hidden]="bookingPhase!==1"></app-select>
+  <app-info *ngIf="isInfoEnabled" [hidden]="bookingPhase!==2"></app-info>
+  <app-payment *ngIf="isPaymentEnabled" [hidden]="bookingPhase!==3"></app-payment>
+</div>

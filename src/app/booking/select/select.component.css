@@ -1,0 +1,450 @@
+/* Bu iki bolum html input number secildiginde oklari sakliyor. */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+::ng-deep .validation-control .mat-form-field-underline::before {
+  background: red;
+  height: 3px;
+}
+
+.steelblue {
+  background: rgb(168, 216, 255);
+}
+
+.fa-ban {
+  color: red;
+  position: absolute;
+  left: 18px;
+  top: 2px;
+  z-index: 1;
+  font-size: 1.5rem;
+}
+
+/* once ve sonra trip gosterme */
+.date-update-before::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -11%;
+  border: 19px solid transparent;
+  border-left-color: #f8f9fa;
+  transform: rotate(180deg);
+}
+
+.date-update-after::after {
+  content: '';
+  position: absolute;
+  top: -0.6px;
+  left: 90%;
+  border: 19.5px solid transparent;
+  border-left-color: #f8f9fa;
+}
+
+/* logo */
+.logo {
+  width: 40px; 
+  height: 30px
+}
+
+.dictionary-trips {
+  padding: 5px;
+}
+
+.dictionary {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.fa-user, .fa-car {
+  position: relative; 
+  top: 2px; 
+  left: 7px
+}
+
+.fa-plus-circle, .fa-minus-circle {
+  position: relative; 
+  top: -5px; 
+  left: -1px;
+}
+
+.fa-grip-lines-vertical {
+  margin-left: 0.5rem;
+}
+
+.fa-thumbs-up {
+  margin-left: 1rem;
+}
+
+.trip-major {
+  margin-right: 0; 
+  margin-left: 0;
+  padding-top: 5px;
+  /* padding-bottom: 3px; */
+}
+
+.trip-major > div {
+  padding-bottom: 3px;
+}
+
+@media(max-width: 324px) {
+  .date-update-after::after {
+    left: 74%;
+    top: -7px;
+  }
+  .date-update-before::before {
+    left: -27%;
+    top: -5px;
+  }
+  .date-update-before, .date-update-after {
+    font-size: 9px;
+    padding: 5px;
+  }
+  .trip-major {
+    line-height: 10px;
+    font-size: 11px;
+  }
+  .dictionary-trips {
+    font-size: 9px;
+    line-height: initial;
+  }
+  .seat {
+    font-size: 12px;
+  }
+  .bed {
+    margin-left: -14px;
+  }
+  .car {
+    margin-left: -11px;
+  }
+  .price {
+    margin-left: -20px;
+  }
+  .select-dictionary {
+    margin-left: 10px;
+  }
+  .logo {
+    margin-left: -17px;
+    width: 30px;
+    height: 25px;
+  }
+  .logo-text {
+    margin-left: -13px;
+  }
+  .trip-time {
+    margin-left: inherit;
+  }
+  .select-dictionary-plus-icon {
+    font-size: 20px;
+  }
+  .icon-buttons {
+    margin-left: -9px;
+  }
+}
+
+@media(min-width: 325px) and (max-width: 375px) {
+  .date-update-after::after {
+    left: 80%;
+    top: -5px;
+  }
+  .date-update-before::before {
+    left: -20%;
+    top: -5px;
+  }
+  .date-update-before, .date-update-after {
+    font-size: 10px;
+    padding: 5px;
+  }
+  .trip-major {
+    line-height: 10px;
+    font-size: 11px;
+  }
+  .dictionary-trips {
+    font-size: 9px;
+    line-height: initial;
+  }
+  .seat {
+    font-size: 12px;
+  }
+  .bed {
+    margin-left: -14px;
+  }
+  .car {
+    margin-left: -11px;
+  }
+  .price {
+    margin-left: -20px;
+  }
+  .select-dictionary {
+    margin-left: 10px;
+  }
+  .logo {
+    margin-left: -17px;
+    width: 30px;
+    height: 25px;
+  }
+  .logo-text {
+    margin-left: -13px;
+  }
+  .trip-time {
+    margin-left: inherit;
+  }
+  .select-dictionary-plus-icon {
+    font-size: 20px;
+  }
+  .icon-buttons {
+    margin-left: -9px;
+  }
+}
+
+@media(min-width: 376px) and (max-width: 425px) {
+  .date-update-after::after {
+    left: 80%;
+    top: -5px;
+  }
+  .date-update-before::before {
+    left: -20%;
+    top: -5px;
+  }
+  .date-update-before, .date-update-after {
+    font-size: 10px;
+  }
+  .trip-major {
+    line-height: 10px;
+    font-size: 11px;
+  }
+  .dictionary-trips {
+    font-size: 11px;
+    line-height: initial;
+  }
+  .seat {
+    font-size: initial;
+  }
+  .bed {
+    margin-left: -14px;
+  }
+  .car {
+    margin-left: -11px;
+  }
+  .price {
+    margin-left: -20px;
+  }
+  .select-dictionary {
+    margin-left: 10px;
+  }
+  .logo {
+    margin-left: -14px;
+    width: 30px;
+    height: 25px;
+  }
+  .logo-text {
+    margin-left: -9px;
+  }
+  .trip-time {
+    margin-left: inherit;
+  }
+}
+
+@media(min-width: 426px) and (max-width: 499px) {
+  .date-update-after::after {
+    left: 82%;
+    top: -3px;
+  }
+  .date-update-before::before {
+    left: -18%;
+    top: -3px;
+  }
+  .date-update-before, .date-update-after {
+    line-height: 1.1rem;
+    font-size: 14px;
+  }
+  .trip-major {
+    line-height: initial;
+  }
+  .dictionary-trips {
+    font-size: 11px;
+    line-height: initial;
+  }
+  .seat {
+    font-size: initial;
+  }
+  .bed {
+    margin-left: -14px;
+  }
+  .car {
+    margin-left: -11px;
+  }
+  .price {
+    margin-left: -20px;
+  }
+  .select-dictionary {
+    margin-left: 10px;
+  }
+  .logo {
+    margin-left: -10px;
+    width: 30px;
+    height: 25px;
+  }
+  .logo-text {
+    margin-left: -6px;
+  }
+}
+
+@media(max-width: 500px) {
+  .passenger-add, .passenger-minus, .vehicle-add, .vehicle-minus, .select-button {
+    padding: revert;
+  }
+  .fa-grip-lines-vertical, .counter, .fa-thumbs-up{
+    display: none;
+  }
+}
+
+@media(min-width: 500px) and (max-width: 576px) {
+  .date-update-after::after {
+    left: 85%;
+    top: -3px;
+  }
+  .date-update-before::before {
+    left: -15%;
+    top: -3px;
+  }
+  .date-update-before, .date-update-after {
+    line-height: 1.1rem;
+    font-size: 14px;
+  }
+  .trip-major {
+    line-height: initial;
+  }
+  .dictionary-trips {
+    font-size: 11px;
+    line-height: initial;
+  }
+  .seat {
+    font-size: initial;
+  }
+  .bed {
+    margin-left: -14px;
+  }
+  .car {
+    margin-left: -11px;
+  }
+  .price {
+    margin-left: -15px;
+  }
+  .select-dictionary {
+    margin-left: auto;
+  }
+  .logo {
+    width: 30px;
+    height: 25px;
+  }
+  .logo-text {
+    margin-left: -2px;
+  }
+}
+
+@media(min-width: 577px) and (max-width: 768px) {
+  .date-update-after::after {
+    left: 84%;
+    top: -3px;
+  }
+  .date-update-before::before {
+    left: -15%;
+    top: -3px;
+  }
+  .date-update-before, .date-update-after {
+    line-height: 1.1rem;
+    font-size: 14px;
+  }
+  .trip-major {
+    line-height: initial;
+  }
+  .toggle-icon-div {
+    padding-left: 5px;
+  }
+  .toggle-icon {
+    padding-bottom: 5px;
+  }
+  .dictionary-trips {
+    font-size: 11px;
+    line-height: initial;
+  }
+  .seat {
+    font-size: initial;
+  }
+  .bed {
+    margin-left: -14px;
+  }
+  .car {
+    margin-left: -11px;
+  }
+  .price {
+    margin-left: -15px;
+  }
+  .select-dictionary {
+    margin-left: auto;
+  }
+}
+
+@media(min-width: 769px) and (max-width: 992px) {
+  .dictionary-trips {
+    font-size: 10px;
+    line-height: initial;
+  }
+  .trip-major > p {
+    padding-bottom: 0;
+  }
+  .exact-date {
+    font-size: small;
+  }
+  .date-update-after::after {
+    left: 84%;
+  }
+  .date-update-before::before {
+    left: -18%;
+  }
+  .dictionary {
+    font-size: 10px;
+    line-height: initial;
+  }
+  .seat {
+    font-size: 12px;
+  }	
+  .select-dictionary {
+    padding-left: 0;
+  }
+}
+
+
+@media(min-width: 993px) and (max-width: 1200px) {
+  .fa-ban {
+    left: 15px;
+    font-size: 18px;
+  }
+  .date-update-after::after {
+    left: 88%;
+  }
+  .date-update-before::before {
+    left: -14%;
+  }
+  .logo {
+    width: 15px; 
+    height: 15px;
+  }
+  .logo-text {
+    font-size: 10px;
+    line-height: initial;
+  }
+}
+
+@media(min-width: 1201px) {
+  .fa-bed, .fa-car-side {
+    cursor: pointer;
+    vertical-align: middle;
+  }
+}

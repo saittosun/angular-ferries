@@ -1,0 +1,28 @@
+<div class="container">
+
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-10 " style="margin-top: 20px;">
+      <h1 class="font-weight-bold text-center">Greece Ferries Blog</h1>
+    </div>
+    <div class="col-2">
+      <a href="https://www.greecetours.com/">
+        <img src="https://greeceferries.com/wp-content/uploads/2018/10/greecetous-logo-300x90-1.png" alt="GreeceTours" style="height: 50px;">
+      </a>
+    </div>
+  </div>
+
+  <mat-grid-list [cols]="breakpoint" rowHeight="2:2" (window:resize)="onResize($event)">
+    <mat-grid-tile *ngFor="let blog of blogs">
+      <div>
+        <h2> {{blog.title}} </h2>
+
+        <img src="{{blog.image}}" alt="image" style="width: 500px;">
+
+          <p> {{blog.slug.slice(0,200) + '...'}} </p>
+          <p class="font-weight-bold">December 11, 2020 </p>
+      </div>
+
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>

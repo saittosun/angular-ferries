@@ -1,0 +1,16 @@
+
+    <mat-form-field
+      appearance="fill"
+      *ngIf="passengerTypes[selectedPassengerTypeIndex].discounts.length > 0"
+    >
+      <mat-label>Passenger Discount</mat-label>
+      <mat-select [(ngModel)]="passengerDiscount" (selectionChange)="handleDiscountChange()">
+        <mat-option
+          *ngFor="let discount of passengerTypes[selectedPassengerTypeIndex].discounts"
+          [value]="discount"
+        >
+          {{ discount.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+

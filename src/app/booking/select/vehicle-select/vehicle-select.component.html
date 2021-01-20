@@ -1,0 +1,41 @@
+<div *ngFor="let dummy of [].constructor(vehicleCount); let i = index">
+  <mat-form-field class="col-4" [ngClass]="{'validation-control': !vehicleTypes[i] && isSubmitted[dicIndex][tripIndex]}" appearance="fill">
+    <mat-error >Vehicle type required!</mat-error>
+    <mat-label>Vehicle</mat-label>
+    <mat-select
+      [(ngModel)]="vehicleTypes[i]"
+      (selectionChange)="handleChange()"
+    >
+      <mat-option
+        *ngFor="let vehicleAccodomation of companyDictionary.vehicleAccommodations"
+        [value]="vehicleAccodomation"
+      >
+        {{ vehicleAccodomation.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="col-4" [ngClass]="{'validation-control': vehicleTypes[i] && isSubmitted[dicIndex][tripIndex] && !vehicleLengths[i]}" appearance="fill" *ngIf="vehicleTypes[i] && vehicleTypes[i].pricingPerMeter">
+    <mat-label>Vehicle Length</mat-label>
+    <mat-select  [(ngModel)]="vehicleLengths[i]" (selectionChange)="handleChange()">
+      <mat-option
+        *ngFor="let length of getVehicleLengths(i)"
+        [value]="length"
+      >
+        {{ length }} meter
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="col-4" appearance="fill">
+    <mat-label>Vehicle Discount</mat-label>
+    <mat-select  [(ngModel)]="vehicleDiscounts[i]" (selectionChange)="handleChange()">
+      <mat-option
+        *ngFor="let discount of companyDictionary.vehicleDiscounts"
+        [value]="discount"
+      >
+        {{ discount.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

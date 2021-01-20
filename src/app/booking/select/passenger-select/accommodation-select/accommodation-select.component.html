@@ -1,0 +1,33 @@
+<div class="row accommodation-select">
+  <mat-form-field  class="col-6" appearance="fill">
+    <mat-label>Passenger Type</mat-label>
+    <mat-select [formControl]="passengerType" (selectionChange)="handlePassengerTypeChange($event)">
+      <div *ngFor="let passengerType of passengerTypes">
+        <mat-option *ngIf="
+            index !== 0 ||
+            !(
+              passengerType.code.startsWith('C') ||
+              passengerType.code.startsWith('I')
+            )
+          " [value]="passengerType">
+          {{ passengerType.name }} ({{ passengerType.minAge }}-{{
+          passengerType.maxAge
+          }})
+        </mat-option>
+      </div>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="col-6" *ngIf="!(passengerType.value && passengerType.value.code === 'I0')" appearance="fill">
+    <mat-label>Passenger Accodomation</mat-label>
+    <mat-select [(ngModel)]="selectedAccommodationAvailabilities[index]" (selectionChange)="handleAvailabilityChange()">
+      <div *ngFor="let availability of accommodationAvailabilities">
+        <mat-option *ngIf="passengerCount >= availability.accommodation.capacity" [value]="availability">
+          {{ availability.accommodation.name }} -
+          {{ availability.availabilityType }} -
+          {{ availability.adultBasePrice / 100 | currency: "EUR":"symbol" }}
+        </mat-option>
+      </div>
+    </mat-select>
+  </mat-form-field>
+</div>

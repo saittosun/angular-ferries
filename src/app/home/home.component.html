@@ -1,0 +1,122 @@
+<header class="pt-5">
+  <div class="row">
+    <div class="col">
+      <div class="mx-auto p-3 text-white text-center">
+        <div class="btn-group btn-group-toggle d-flex d-inline-flex p-2">
+        <label class="btn btn-secondary btn-lg" [ngClass]="{ active: searchMode }">
+          <input
+            type="radio"
+            [disabled]="searchMode"
+            (click)="toggleSearchMode()"/>
+          Search Ferry
+        </label>
+        <label
+          class="btn btn-secondary btn-lg radioButtons"
+          [ngClass]="{ active: !searchMode }">
+          <input
+            type="radio"
+            [disabled]="!searchMode"
+            (click)="toggleSearchMode()"
+          />
+          Search Booking
+        </label>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+  <app-search *ngIf="searchMode; else searchBooking"></app-search>
+
+  <ng-template #searchBooking>
+    <div class="row justify-content-md-center search-booking">
+      <form [formGroup]="bookingSearchForm"
+            class="col-xl-9 col-lg-11 col-md-12 col-sm-12 col-12 py-3 px-3 booking-form mt-5"
+            (ngSubmit)="onSubmit()">
+      <div class="row search-fields">
+        <div class="form-group col-md-6">
+          <input
+            type="email"
+            style="height: 50px"
+            class="form-control"
+            formControlName="email"
+            placeholder="Enter contact email"
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <input
+            type="text"
+            style="height: 50px"
+            class="form-control"
+            formControlName="bookingId"
+            aria-describedby="bookingHelp"
+            placeholder="Booking Id"
+          />
+          <small id="bookingHelp" class="form-text text-light"
+            >You can find Booking Id in your confirmation page.</small
+          >
+        </div>
+      </div>
+      <button type="submit" class="btn btn-outline-light float-right" value="submit">Submit</button>
+    </form>
+  </div>
+  </ng-template>
+</header>
+
+<section class="bg-light text-center p-5">
+  <div class="container-fluid">
+    <div class="row text-muted text-center">
+      <div class="col m-4">
+        <h1 class="display-4 mb-4 font-weight-bold text-uppercase">
+          Why people select us?
+        </h1>
+        <div class="underline-dark mb-4"></div>
+        <h2 class="lead">Online Ferry Ticket Booking Platform</h2>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-lg-3">
+        <div class="card card-1 py-4 my-4 mx-auto">
+          <div class="card-body">
+            <h1 class="display-4"><i class="fas fa-info-circle fa-2x"></i></h1>
+            <h2 class="text-uppercase font-weight-bold">Experience</h2>
+            <h3>More Than 30 Years in Travel Sector</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card card-1 py-4 my-4 mx-auto">
+          <div class="card-body">
+            <h1 class="display-4"><i class="far fa-thumbs-up fa-2x"></i></h1>
+            <h2 class="text-uppercase font-weight-bold">Easy Booking</h2>
+            <h3>Fast & Easy Way To Book Your Ferry Ticket</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card card-1 py-4 my-4 mx-auto">
+          <div class="card-body">
+            <h1 class="display-4"><i class="far fa-envelope fa-2x"></i></h1>
+            <h2 class="text-uppercase font-weight-bold">Tickets to Home</h2>
+            <h3>Ticket Delivery Service Across The World</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card card-1 py-4 my-4 mx-auto">
+          <div class="card-body">
+            <h1 class="display-4">
+              <i class="fas fa-map-marker-alt fa-2x"></i>
+            </h1>
+            <h2 class="text-uppercase font-weight-bold">All Ports</h2>
+            <h3>In Greece and Between Greece & Italy & Turkey</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-5">
+      <h2 class="font-weight-bold mb-4">Thanks for being with us!</h2>
+      <i class="fas fa-heart fa-5x"></i>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+<div class="form-group">
+  <div class="form-checkbox" >
+    <mat-radio-group
+      #radioGroup="matRadioGroup"
+      (change)="changeTripKind($event)"
+      class="example-radio-group"
+    >
+      <mat-radio-button class="example-radio-button" [value]="0" checked
+        >Single Route</mat-radio-button
+      >
+      <mat-radio-button class="example-radio-button" [value]="1">Round Trip</mat-radio-button>
+      <mat-radio-button class="example-radio-button" [value]="2">Multi Route</mat-radio-button>
+    </mat-radio-group>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+.example-month-picker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+.example-month-picker .mat-calendar-arrow {
+  display: none;
+}
+
+/* ::ng-deep .nationInfo .mat-form-field-wrapper {
+  height: 50px;
+}
+
+::ng-deep .nationInfo .mat-form-field-flex {
+  align-items: normal;
+} */
+
+
+.validation {
+  border-color: red;
+}
+
+::ng-deep .validation-control .mat-form-field-underline::before {
+  background: red;
+  height: 3px;
+ }
+
+
+ .contacts {
+  margin-left: 15px;
+  background: cadetblue;
+}
+
+.passengers {
+  border-bottom: 1px solid black;
+  width: fit-content;
+}
+
+.passengers h3 {
+  margin-bottom: 0;
+}
+
+.vehicle {
+  border-bottom: 1px solid black;
+  width: fit-content;
+}
+
+.vehicle h3 {
+  margin-bottom: 0;
+}
+
+::ng-deep .mat.form-field .nationality {
+  margin-bottom: 1rem;
+}
+
+@media(max-width: 425px) {
+  .contacts {
+    margin-right: 15px;
+  }
+}

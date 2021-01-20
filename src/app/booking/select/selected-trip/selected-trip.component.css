@@ -1,0 +1,40 @@
+.trip-header {
+ margin: -10px -10px 0 -10px; 
+ padding: 6px 0;
+}
+
+.trip-header h1 {
+ margin-bottom: 0;
+}
+
+.bg-light {
+ padding: 10px;
+}
+
+.d-flex img {
+ width: 40px; 
+ height: 30px
+}
+.d-flex p {
+ padding: 8px;
+}
+
+h4 {
+ border-bottom: 2px solid black; 
+ padding-bottom: 1rem;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+ .bg-light {
+   font-size: 12px;
+ }
+ .departure-time {
+   margin-bottom: 0;
+ }
+ h4 {
+   padding-bottom: 0;
+ }
+ .ready-for-info {
+   margin-bottom: 0;
+ }
+} 

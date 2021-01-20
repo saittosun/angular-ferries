@@ -1,0 +1,254 @@
+<div *ngIf="isLoading" class="center">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+<div *ngIf="!errorMessage" class="container mt-5" [ngClass]="{ transparent: isLoading }">
+  <div class="row">
+    <div class="col-12 col-md-8" >
+      <div *ngFor="let dictionary of searchResponse.tripsWithDictionary; let dicIndex = index">
+        <div class="row bg-dark align-items-center trip-major text-center text-white">
+          <div class="col-3 col-md-3">
+            {{
+              searchResponse.tripsWithDictionary[dicIndex].trips[0].origin.name | titlecase
+            }}
+            <!-- <i class="fas fa-angle-double-right d-none d-sm-none d-md-block"></i> -->
+            {{
+              searchResponse.tripsWithDictionary[dicIndex].trips[0].destination.name | titlecase
+            }}
+          </div>
+          <div class="col-9 col-md-9">
+            <div class="row">
+              <div class="col-4 col-lg-4 col-md-4">
+                <button class="btn btn-light btn-block date-update-before" *ngIf="routeDateAlternatives[dicIndex].previousDate" (click)="handleNewDateSearch(dicIndex, false)">
+                  {{ routeDateAlternatives[dicIndex].previousDate | date: "d MMM" }}
+                </button>
+              </div>
+              <div class="col-2 col-lg-2 col-md-2 align-self-center exact-date">
+                {{
+                  routeDateAlternatives[dicIndex].currentDate | date: "d MMM"
+                }}
+              </div>
+              <div class="col-4 col-lg-4 col-md-4">
+                <button class="btn btn-light btn-block date-update-after" (click)="handleNewDateSearch(dicIndex, true)">
+                  {{ routeDateAlternatives[dicIndex].nextDate | date: "d MMM" }}
+                </button>
+              </div>
+              <div class="col-2 col-lg-2 col-md-2 toggle-icon-div">
+                <button mat-icon-button *ngIf="!isDictionaryVisiable[dicIndex]" class="btn btn-outline-secondary"  type="button" (click)="toggleDictionary(dicIndex)">
+                  <span class="material-icons toggle-icon">
+                    toggle_on
+                  </span>
+                </button>
+                <button mat-icon-button *ngIf="isDictionaryVisiable[dicIndex]" class="btn btn-outline-secondary" type="button" (click)="toggleDictionary(dicIndex)">
+                  <mat-icon>
+                    <span class="material-icons toggle-icon">
+                      toggle_off
+                    </span>
+                  </mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div [hidden]="isDictionaryVisiable[dicIndex]">
+          <div *ngFor="let _trip of dictionary.trips; let tripIndex = index">
+            <div class="font-weight-bold mb-1 dictionary-trips" [ngClass]="isTripSelected(dicIndex, tripIndex) ? 'steelblue' : 'bg-light'"
+                 (click)="toggleTrip(dicIndex, tripIndex)">
+              <div class="row text-center align-items-center mb-1 dictionary">
+                <div class="col-3 col-md-3 col-lg-3">
+                  <div class="row align-items-center">
+                    <div class="col-3 col-md-5">
+                      <img
+                      class="logo"
+                        [src]="
+                          searchResponse.tripsWithDictionary[dicIndex].trips[
+                            tripIndex
+                          ].companyDictionary.imageUrl
+                        "
+                      />
+                    </div>
+                    <div class="col-9 col-md-7 align-self-center logo-text">
+                      {{
+                        searchResponse.tripsWithDictionary[dicIndex].trips[
+                          tripIndex
+                        ].companyDictionary.name | titlecase
+                      }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 col-md-3 col-lg-4">
+                  <div class="row">
+                    <div class="col-9 col-md-8 col-lg-9 trip-time">
+                      {{
+                        searchResponse.tripsWithDictionary[dicIndex].trips[tripIndex]
+                          .departureDateTime | date: "shortTime"
+                      }}
+                      <i class="fas fa-angle-right d-none"></i>
+                      {{
+                        searchResponse.tripsWithDictionary[dicIndex].trips[tripIndex]
+                          .arrivalDateTime | date: "shortTime"
+                      }}
+                    </div>
+                    <div class="col-3 col-md-4 col-lg-3 align-self-center">
+                      {{ getDurationTime(dicIndex, tripIndex) }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3 col-md-3 col-lg-2 icon-buttons">
+                  <div class="row">
+                    <div class="col-4 col-md-3">
+                      <i
+                        *ngIf="!hasAccommodation(dicIndex, tripIndex)"
+                        class="fas fa-ban"
+                      ></i>
+                      <span class="material-icons seat">
+                        airline_seat_recline_extra
+                      </span>
+                    </div>
+                    <div class="col-4 col-md-3 bed">
+                      <i
+                        *ngIf="!hasVesselCabin(dicIndex, tripIndex)"
+                        class="fas fa-ban"
+                      ></i>
+                      <i
+                        class="fas fa-bed"
+                      ></i>
+                    </div>
+                    <div class="col-4 col-md-3 car">
+                      <i
+                        *ngIf="!hasVesselGarage(dicIndex, tripIndex)"
+                        class="fas fa-ban"
+                      ></i>
+                      <i
+                        class="fas fa-car-side"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1 col-md-2 col-lg-2 price">
+                  <strong class="d-none d-sm-none d-md-none d-lg-block">Base Price</strong>
+                  {{
+                    searchResponse.tripsWithDictionary[dicIndex].trips[tripIndex]
+                      .basicPrice / 100 | currency: "EUR":"symbol"
+                  }}
+                </div>
+                <div class="col-1 col-md-1 col-lg-1 select-dictionary">
+                  <span class="material-icons select-dictionary-plus-icon" *ngIf="isTripVisible[dicIndex][tripIndex]" type="button">
+                    check_box
+                  </span>
+                  <span class="material-icons" *ngIf="!isTripVisible[dicIndex][tripIndex]" type="button">
+                    control_point
+                    </span>
+                </div>
+              </div>
+            </div>
+
+            <div [hidden]="!isTripVisible[dicIndex][tripIndex]">
+              <app-passenger-select
+                [dicIndex]="dicIndex"
+                [tripIndex]="tripIndex"
+                [trip]="
+                  searchResponse.tripsWithDictionary[dicIndex].trips[tripIndex]
+                "
+                [passengerCount]="passengerCount"
+                (passengerTypeChangeEvent)="handlePassengerTypeChange($event)"
+                (passengerDiscountChangeEvent)="
+                  handlePassengerDiscountChange($event)
+                "
+                (genderChangeEvent)="handleGenderChange($event)"
+                (accommodationChangeEvent)="handleAccommodationChange($event)"
+                [genders]="genders"
+                [selectedGenders]="selectedGenders"
+                [vehicleCount]="vehicleCount"
+              ></app-passenger-select>
+              <div class="row">
+                <app-vehicle-select
+                  class="col-9"
+                  [isSubmitted]="isSubmitted"
+                  [dicIndex]="dicIndex"
+                  [tripIndex]="tripIndex"
+                  (vehicleChangeEvent)="handleVehicleChange($event)"
+                  [companyDictionary]="
+                    searchResponse.tripsWithDictionary[dicIndex].trips[tripIndex]
+                      .companyDictionary
+                  "
+                  [vehicleCount]="vehicleCount"
+                ></app-vehicle-select>
+              </div>
+            </div>
+
+            <div class="my-2 clearfix" *ngIf="isTripVisible[dicIndex][tripIndex]">
+              <div class="float-left">
+                <button
+                  type="button"
+                  class="mr-2 btn btn-secondary passenger-add"
+                  (click)="addPassenger(1)"
+                >
+                  <i class="fas fa-user"></i>
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+                <span class="badge badge-light mr-2 counter">{{ passengerCount }}</span>
+                <button
+                  type="button"
+                  class="btn btn-dark passenger-minus"
+                  (click)="addPassenger(-1)">
+                  <i class="fas fa-user"></i>
+                  <i class="fas fa-minus-circle"></i>
+                </button>
+                <i class="fas fa-grip-lines-vertical"></i>
+                <button
+                  type="button"
+                  class="mx-2 btn btn-secondary vehicle-add"
+                  (click)="addVehicle(1)">
+                  <i class="fas fa-car"></i>
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+                <span class="badge badge-light mr-2">{{ vehicleCount }}</span>
+                <button
+                  type="button"
+                  class="btn btn-dark vehicle-minus"
+                  (click)="addVehicle(-1)">
+                  <i class="fas fa-car"></i>
+                  <i class="fas fa-minus-circle"></i>
+                </button>
+              </div>
+              <div class="float-right">
+                <button
+                  [disabled]="
+                    !this.searchResponse.tripsWithDictionary[dicIndex].trips[
+                      tripIndex
+                    ].accommodationAvailabilities.length ||
+                    !this.searchResponse.tripsWithDictionary[dicIndex].trips[
+                      tripIndex
+                    ].vessel.hasGarage
+                  "
+                  class="font-weight-bold btn btn-info select-button"
+                  type="button"
+                  (click)="select(dicIndex, tripIndex)"
+                >
+                  Select
+                  <i class="far fa-thumbs-up"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <app-selected-trip
+        [searchForm]="searchForm"
+        [passengerCount]="passengerCount"
+        [vehicleCount]="vehicleCount"
+        [selectedTrips]="selectedTrips"
+        [searchResponse]="searchResponse"
+        [readyForCalculation]="readyForCalculation"
+        [readyForInfo]="readyForInfo"
+        (pricingResponseEvent)="changeReadyForInfo($event)"
+      ></app-selected-trip>
+    </div>
+  </div>
+</div>

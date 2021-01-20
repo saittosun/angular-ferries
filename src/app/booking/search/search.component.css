@@ -1,0 +1,86 @@
+::ng-deep .example-radio-button:not(:first-child) {
+  margin-left: 16px;
+}
+
+.search-box {
+	background: rgba(34, 33, 33, 0.7);
+}
+
+::ng-deep .passenger-count .mat-form-field {
+  width: 45%;
+}
+
+:ng-deep .mat-radio-group {
+  color: white;
+  font-weight: 500;
+}
+
+::ng-deep .validation-control .mat-form-field-underline::before {
+  background: red;
+  height: 3px;
+ }
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background: aliceblue;
+}
+
+.message-error {
+  margin-left: 0;
+  margin-right: 0
+}
+
+.trip-date-field {
+  width: inherit;
+}
+
+.routes-field {
+  width: inherit;
+}
+
+::ng-deep .app-trip-date .mat-form-field-flex {
+  align-items: safe center;
+}
+
+@media(min-width: 1400px){
+  button {
+    margin-right: 0.6rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  ::ng-deep .passenger-count .mat-form-field:first-child {
+    margin-right: auto;
+  }
+  ::ng-deep .passenger-count .mat-form-field:last-child {
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  button {
+    margin-right: 0.3rem;
+  }
+}
+
+@media(min-width: 1025px){
+  ::ng-deep .passenger-count .mat-form-field:first-child {
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 426px) {
+  button {
+    width: inherit;
+  }
+}
+
+@media(max-width: 380px) {
+  ::ng-deep .example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  ::ng-deep .example-radio-button:not(:first-child) {
+    margin-left: 0;
+  }
+}

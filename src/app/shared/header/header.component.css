@@ -1,0 +1,101 @@
+.nav-menu {
+	background: #080808c9;
+}
+
+.menu-item {
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #eee;
+  transition: color .5s;
+}
+
+.menu-item:hover {
+  color: #70aed2;
+}
+
+.nav-active {
+  color: #70aed2;
+}
+
+.line1, .line2, .line3 {
+  width: 23px;
+  height: 3px;
+  margin: 5px;
+  transition: all .4s;
+}
+
+.dropdown-menu p{
+  cursor: pointer; 
+  margin-top: 2px;
+}
+
+.dropdown-menu{
+  position: absolute;
+  right: -13px;
+  top: 51px;
+}
+
+nav a {
+  font-size: 1rem;
+}
+
+.user-icon-header, .user-icon-user {
+  position: relative;
+}
+
+
+.user-icon-header a {
+  padding-right: 4rem;
+}
+.user-icon-user a {
+  padding-right: 4rem;
+}
+
+.user-icon-header svg, .user-icon-user svg {
+  position: absolute; 
+  right: 19px;
+  top: 0px;
+  font-size: 2.2rem;
+}
+
+.logo {
+  width: 70%;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .dropdown-menu {
+    margin-top: 0;
+  }
+  .dropdown-menu p {
+    padding-bottom: 0;
+  }
+
+  nav a {
+    font-size: 0.8rem;
+  }
+
+  .user-icon-header svg, .user-icon-user svg {
+    right: 26px;
+    top: 3px;
+    font-size: 1.7rem;
+  }
+
+  .logo {
+    width: 60%;
+  }
+}
+
+@media(min-width: 425px) and (max-width: 991px) {
+  .logo {
+    width: 50%;
+  }
+}
+
+@media(max-width: 424px) {
+  .navbar-brand {
+    display: contents;
+  }
+  .logo {
+    width: 40%;
+  }
+}

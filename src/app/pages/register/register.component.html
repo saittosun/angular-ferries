@@ -1,0 +1,167 @@
+<div *ngIf="isLoading" class="center">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="container" [ngClass]="{'transparent': isLoading}">
+  <section id="register-form">
+    <div class="row">
+      <div class="offset-3 col-md-6">
+        <section>
+          <form
+            [formGroup]="singUpForm"
+            class="text-center border border-light p-5">
+            <p class="h4 font-weight-bold">Sign up</p>
+            <div class="form-row mb-4">
+              <div class="col">
+                <input
+                  type="text"
+                  id="defaultRegisterFormFirstName"
+                  formControlName="name"
+                  class="form-control"
+                  placeholder="First name"
+                  [ngClass]="{'is-invalid': singUpForm.controls.name.invalid && singUpForm.controls.name.touched}"/>
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  id="defaultRegisterFormLastName"
+                  formControlName="lastName"
+                  class="form-control"
+                  placeholder="Last name"
+                  [ngClass]="{'is-invalid': singUpForm.controls.lastName.invalid && singUpForm.controls.lastName.touched}"/>
+              </div>
+            </div>
+            <input
+              type="email"
+              id="defaultRegisterFormEmail"
+              formControlName="email"
+              class="form-control mb-4"
+              placeholder="E-mail"
+              [ngClass]="{'is-invalid': singUpForm.controls.email.invalid && singUpForm.controls.email.touched}"/>
+            <input
+              type="password"
+              id="defaultRegisterFormPassword"
+              formControlName="password"
+              class="form-control"
+              placeholder="Password"
+              aria-describedby="defaultRegisterFormPasswordHelpBlock"
+              [ngClass]="{'is-invalid': singUpForm.controls.password.invalid && singUpForm.controls.password.touched}"/>
+            <small
+              id="defaultRegisterFormPasswordHelpBlock"
+              class="form-text text-muted mb-4">
+              At least 8 characters and 1 digit
+            </small>
+            <input
+              type="password"
+              id="defaultRegisterFormPassword"
+              formControlName="repeatPassword"
+              class="form-control"
+              placeholder="Confirm Password"
+              aria-describedby="defaultRegisterFormPasswordHelpBlock"
+              [ngClass]="{'is-invalid': singUpForm.controls.repeatPassword.touched &&
+                  singUpForm.controls.password.value != singUpForm.controls.repeatPassword.value}"/>
+            <small
+              id="defaultRegisterFormPasswordHelpBlock"
+              class="form-text text-muted mb-4"
+              *ngIf="singUpForm.controls.repeatPassword.value?.length >= 4"
+              [hidden]="singUpForm.controls.password.value == singUpForm.controls.repeatPassword.value || !singUpForm.controls.repeatPassword.dirty">
+              Passwords do not match!
+            </small>
+            <small
+              id="defaultRegisterFormPhoneHelpBlock"
+              class="form-text text-muted mb-4">
+              Optional - for two step authentication
+            </small>
+
+            <div class="form-group">
+              <input
+              type="text"
+              id="defaultRegisterPhonePassword"
+              formControlName="telephoneNumber"
+              placeholder="Phone number"
+              class="form-control"
+              aria-describedby="defaultRegisterFormPhoneHelpBlock"/>
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="address"
+                id="inputAddress"
+                placeholder="Adress"/>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label for="city">City</label>
+                <input
+                  formControlName="city"
+                  type="text"
+                  class="form-control"
+                  id="inputCity"/>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select
+                  formControlName="country"
+                  id="inputState"
+                  class="form-control">
+                  <option
+                    *ngFor="let country of countries"
+                    [value]="country.idOrCode"
+                    selected>
+                    {{ country.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="inputZip">Zip</label>
+                <input
+                  formControlName="zipCode"
+                  type="text"
+                  class="form-control"
+                  id="inputZip"
+                />
+              </div>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input
+                formControlName="subscribe"
+                type="checkbox"
+                class="custom-control-input"
+                id="defaultRegisterFormNewsletter"
+              />
+              <label
+                class="custom-control-label"
+                for="defaultRegisterFormNewsletter"
+                >Subscribe to our newsletter</label
+              >
+            </div>
+            <div *ngIf="message">
+              <p style="color: red;">{{ message }}</p>
+            </div>
+            <button type="submit" class="btn btn-success btn-block" (click)="onRegistrationSubmit()">
+              Sign Up
+            </button>
+            <div class="or-seperator"><i>or</i></div>
+            <div class="text-center social-btn">
+              <a (click)="socialClicked('facebook')" class="btn btn-primary btn-block">
+                <i class="fab fa-facebook-square"></i> Sign in with <b>Facebook</b>
+              </a>
+              <a (click)="socialClicked('twitter')" class="btn btn-info btn-block">
+                <i class="fab fa-twitter-square"></i> Sign in with <b>Twitter</b>
+                </a>
+              <a (click)="socialClicked('google')" class="btn btn-danger btn-block">
+                <i class="fab fa-google"></i> Sign in with <b>Google</b>
+              </a>
+            </div>
+            <hr />
+            <p>
+              By clicking <em>Sign up</em> you agree to our
+              <a href="" target="_blank">terms of service</a>
+            </p>
+          </form>
+        </section>
+      </div>
+    </div>
+  </section>
+</div>

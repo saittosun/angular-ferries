@@ -1,0 +1,42 @@
+<div *ngIf="isLoading" class="center">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="container" [ngClass]="{'transparent': isLoading}">
+
+  <div *ngIf="!errorMessage && userBookings" style="margin-top: 50px;">
+    <h1 class="text-center font-weight-bold">Bookings</h1>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Departure Date</th>
+          <th scope="col">Arrival Date</th>
+          <th scope="col">Origin</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Ferry Company</th>
+          <th scope="col">Passengers</th>
+          <th scope="col">Vehicles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let booking of userBookings">
+            <tr *ngFor="let trip of booking.trips" (click)="onTripClick(booking.id)" class="hover-item">
+              <td> {{trip.departureDateTime}} </td>
+              <td> {{trip.arrivalDateTime}} </td>
+              <td> {{trip.originName}} </td>
+              <td> {{trip.destinationName}} </td>
+              <td> {{trip.companyDescription}} </td>
+              <td class="text-center"> {{booking.passengerCount}} </td>
+              <td class="text-center"> {{booking.vehicleCount ? booking.vehicleCount : 0}} </td>
+            </tr>
+          </ng-container>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div *ngIf="errorMessage">
+    <h3 class="text-center text-danger" style="margin-top: 150px; margin-bottom: 350px;" > {{errorMessage}} </h3>
+  </div>
+</div>
+

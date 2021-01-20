@@ -1,0 +1,21 @@
+<div class="row justify-content-center">
+  <mat-form-field class="col-6" appearance="fill">
+    <mat-label>Passenger</mat-label>
+    <mat-select [(ngModel)]="passengerCount" (selectionChange)="selected()">
+      <mat-option *ngFor="
+          let option of passengerCountArray;
+          let i = index
+        " [value]="option">{{ option }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="col-6"
+  appearance="fill">
+    <mat-label>Vehicle</mat-label>
+    <mat-select [(ngModel)]="vehicleCount" (selectionChange)="selected()">
+      <mat-option *ngFor="let option of vehicleCountArray; let i = index" [value]="option">{{ option }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+

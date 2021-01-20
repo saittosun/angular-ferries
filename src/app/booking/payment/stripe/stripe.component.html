@@ -1,0 +1,31 @@
+<div *ngIf="isLoading" class="center">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="container" [ngClass]="{'transparent': isLoading}">
+  <div class="text-right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Logo%21_Logo.svg"
+    style="height: 50px;"
+    alt="">
+  </div>
+  <h1 class="font-weight-bold">Payment</h1>
+  <form novalidate (ngSubmit)="pay()" [formGroup]="stripeTest">
+    <p class="font-weight-bold">Total Price : €{{data.price}} </p>
+    <br>
+    <input type="text" formControlName="name" placeholder="Cardholder Name">
+    <ngx-stripe-card
+      [options]="cardOptions"
+      [elementsOptions]="elementsOptions"
+    ></ngx-stripe-card>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">
+        Pay € {{data.price / 100}}
+      </button>
+    </div>
+    <div class="text-center">
+      <img src="https://www.logo.wine/a/logo/Stripe_(company)/Stripe_(company)-Powered-by-Stripe2-Logo.wine.svg"
+      style="width: 350px; height: 50px;"
+      alt="stripe">
+    </div>
+  </form>
+</div>
