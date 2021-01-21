@@ -92,7 +92,82 @@ input[type=number] {
   padding-bottom: 3px;
 }
 
-@media(max-width: 324px) {
+@media(max-width: 280px) {
+  .date-update-after::after {
+    left: 70%;
+    top: -1px;
+  }
+  .date-update-before::before {
+    left: -32%;
+    top: 0px;
+  }
+  .date-update-before, .date-update-after {
+    font-size: 9px;
+    padding: 5px;
+  }
+  .exact-date {
+    padding-left: 5px;
+  }
+  .toggle-icon-div {
+    margin-left: -17px;
+  }
+  .trip-major-destination {
+    padding-left: 5px;
+  }
+  .trip-major {
+    line-height: 16px;
+    font-size: 11px;
+  }
+  .dictionary {
+    margin-left: -15px;
+  }
+  .dictionary-trips {
+    font-size: 9px;
+    line-height: initial;
+  }
+  .seat {
+    font-size: 11px;
+  }
+  .bed {
+    margin-left: -14px;
+  }
+  .car {
+    margin-left: -13px;
+  }
+  .price {
+    margin-left: -10px;
+  }
+  .select-dictionary {
+    margin-left: 7px;
+  }
+  .logo {
+    display: none;
+  }
+  .logo-text {
+    margin-left: 3px;
+  }
+  .trip-time {
+    margin-left: inherit;
+  }
+  .select-dictionary-plus-icon {
+    font-size: 20px;
+  }
+  .icon-buttons {
+    margin-left: -23px;
+    padding-top: 4px;
+  }
+  .trip-time-duration {
+    padding-left: 0;
+  }
+  .passenger-vehicle-count-buttons button {
+    padding: 0;
+  }
+  .fa-minus-circle, .fa-plus-circle {
+    font-size: small;
+  }
+}
+
+@media(min-width: 281px) and (max-width: 324px) {
   .date-update-after::after {
     left: 74%;
     top: -7px;

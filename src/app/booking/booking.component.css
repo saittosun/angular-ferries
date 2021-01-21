@@ -28,5 +28,6 @@ button {
   button {
     font-size: x-small;
     width: 110%;
+    padding: 5px;
   }
 }

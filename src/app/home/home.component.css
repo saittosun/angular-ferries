@@ -10,6 +10,10 @@
   margin-left: 0;
 }
 
+.search-ferry {
+  margin-left: 0; margin-right: 0;
+}
+
 .btn-group {
   width: 30%;
 }
@@ -48,11 +52,21 @@ header {
   .btn-group {
     width: 100%;
   }
+  .btn-group button {
+    font-size: inherit;
+  }
 }
 
 @media (min-width:540px) and (max-width: 991px) {
   .btn-group {
-    width: 51%;
+    width: 55%;
+  }
+}
+
+@media (max-width: 285px) {
+  ::ng-deep .mat-datepicker-content .mat-calendar {
+    width: 249px! important;
+    height: 300px! important;
   }
 }
 

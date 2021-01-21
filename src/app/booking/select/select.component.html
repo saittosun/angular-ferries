@@ -8,7 +8,7 @@
     <div class="col-12 col-md-8" >
       <div *ngFor="let dictionary of searchResponse.tripsWithDictionary; let dicIndex = index">
         <div class="row bg-dark align-items-center trip-major text-center text-white">
-          <div class="col-3 col-md-3">
+          <div class="col-3 col-md-3 trip-major-destination">
             {{
               searchResponse.tripsWithDictionary[dicIndex].trips[0].origin.name | titlecase
             }}
@@ -91,7 +91,7 @@
                           .arrivalDateTime | date: "shortTime"
                       }}
                     </div>
-                    <div class="col-3 col-md-4 col-lg-3 align-self-center">
+                    <div class="col-3 col-md-4 col-lg-3 align-self-center trip-time-duration">
                       {{ getDurationTime(dicIndex, tripIndex) }}
                     </div>
                   </div>
@@ -180,7 +180,7 @@
             </div>
 
             <div class="my-2 clearfix" *ngIf="isTripVisible[dicIndex][tripIndex]">
-              <div class="float-left">
+              <div class="float-left passenger-vehicle-count-buttons">
                 <button
                   type="button"
                   class="mr-2 btn btn-secondary passenger-add"
