@@ -10,9 +10,26 @@
   margin-left: 0;
 }
 
+.btn-group {
+  width: 30%;
+}
+
+.btn-group button {
+  flex: 1;
+}
+
 .search-fields {
   margin-top: 30px;
 }
+
+header {
+  height: 100vh;
+  background: lightgrey;
+}
+
+/* header > div {
+  margin-right: 0;
+} */
 
 @media (min-width: 768px) {
   .booking-form {
@@ -27,8 +44,15 @@
   }
 }
 
-header {
-  height: 100vh;
-  background: lightgrey;
+@media (max-width: 539px) {
+  .btn-group {
+    width: 100%;
+  }
+}
+
+@media (min-width:540px) and (max-width: 991px) {
+  .btn-group {
+    width: 51%;
+  }
 }
 

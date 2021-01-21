@@ -1,26 +1,46 @@
 <header class="pt-5">
   <div class="row">
     <div class="col">
-      <div class="mx-auto p-3 text-white text-center">
-        <div class="btn-group btn-group-toggle d-flex d-inline-flex p-2">
-        <label class="btn btn-secondary btn-lg" [ngClass]="{ active: searchMode }">
-          <input
-            type="radio"
-            [disabled]="searchMode"
-            (click)="toggleSearchMode()"/>
-          Search Ferry
-        </label>
-        <label
-          class="btn btn-secondary btn-lg radioButtons"
-          [ngClass]="{ active: !searchMode }">
-          <input
-            type="radio"
-            [disabled]="!searchMode"
-            (click)="toggleSearchMode()"
-          />
-          Search Booking
-        </label>
-      </div>
+      <div class="text-white text-center">
+                
+        <div class="btn-group btn-block" role="group">
+          <button 
+            type="button"
+            class="btn btn-secondary" 
+            [ngClass]="{ active: searchMode }" 
+            [disabled]="searchMode" 
+            (click)="toggleSearchMode()">
+            Search Ferry
+          </button>
+          <button 
+            type="button"
+            class="btn btn-secondary" 
+            [ngClass]="{ active: !searchMode }" 
+            [disabled]="!searchMode" 
+            (click)="toggleSearchMode()">
+            Search Booking
+          </button>
+         
+        </div>
+        <!-- <div class="btn-group btn-group-toggle d-flex d-inline-flex p-2">
+          <label class="btn btn-secondary btn-lg" [ngClass]="{ active: searchMode }">
+            <input
+              type="radio"
+              [disabled]="searchMode"
+              (click)="toggleSearchMode()"/>
+            Search Ferry
+          </label>
+          <label
+            class="btn btn-secondary btn-lg radioButtons"
+            [ngClass]="{ active: !searchMode }">
+            <input
+              type="radio"
+              [disabled]="!searchMode"
+              (click)="toggleSearchMode()"
+            />
+            Search Booking
+          </label>
+        </div> -->
       </div>
     </div>
   </div>
@@ -62,7 +82,6 @@
     </div>
   </ng-template>
 </header>
-
 <section class="bg-light text-center p-5">
   <div class="container-fluid">
     <div class="row text-muted text-center">
@@ -120,3 +139,4 @@
     </div>
   </div>
 </section>
+
