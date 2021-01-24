@@ -17,7 +17,7 @@
               searchResponse.tripsWithDictionary[dicIndex].trips[0].destination.name | titlecase
             }}
           </div>
-          <div class="col-9 col-md-9">
+          <div class="col-9 col-md-9 route-alternative-dates">
             <div class="row">
               <div class="col-4 col-lg-4 col-md-4">
                 <button class="btn btn-light btn-block date-update-before" *ngIf="routeDateAlternatives[dicIndex].previousDate" (click)="handleNewDateSearch(dicIndex, false)">
@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-4 col-md-3 col-lg-4">
                   <div class="row">
-                    <div class="col-9 col-md-8 col-lg-9 trip-time">
+                    <div class="col-9 col-md-8 col-lg-9 align-self-center trip-time">
                       {{
                         searchResponse.tripsWithDictionary[dicIndex].trips[tripIndex]
                           .departureDateTime | date: "shortTime"
@@ -205,7 +205,7 @@
                   <i class="fas fa-car"></i>
                   <i class="fas fa-plus-circle"></i>
                 </button>
-                <span class="badge badge-light mr-2">{{ vehicleCount }}</span>
+                <span class="badge badge-light mr-2 counter">{{ vehicleCount }}</span>
                 <button
                   type="button"
                   class="btn btn-dark vehicle-minus"

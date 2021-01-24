@@ -69,7 +69,7 @@
                   <input type="text" matInput formControlName="lastName" placeholder="Last name" />
                 </mat-form-field>
               </div>
-              <div class="form">
+              <div class="form-row">
                 <mat-form-field class="col-6 col-md-4 nationality" appearance="fill">
                   <mat-label>Nationality</mat-label>
                   <mat-select formControlName="nationality">
@@ -106,44 +106,44 @@
                 <p *ngIf="passengerDateMessage[passengerIndex]" class="text-danger">
                   {{ passengerDateMessage[passengerIndex] }}
                 </p>
-                <div *ngIf="isTripToAbroad">
-                  <mat-form-field class="col-6 col-md-4" appearance="fill">
-                    <mat-label>Document Type</mat-label>
-                    <mat-select formControlName="documentType">
-                      <mat-option value="Passport">Passport</mat-option>
-                      <mat-option value="ID">ID</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <mat-form-field class="col-6 col-md-4" appearance="fill" [ngClass]="{
-                    'validation-control ': isControlInvalid(
-                      'documentExpirationDate',
-                      'passengers',
-                      passengerIndex
-                      )
-                    }">
-                    <mat-label>Document Expiration Date</mat-label>
-                    <input matInput [matDatepicker]="dp" formControlName="documentExpirationDate" (dateChange)="
-                        chosenDateHandler($event.value, passengerIndex, false)
-                      " />
-                    <mat-datepicker-toggle matSuffix [for]="dp"><i class="fas fa-calendar-day"></i>
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #dp [startAt]="today" startView="multi-year" panelClass="example-month-picker">
-                    </mat-datepicker>
-                  </mat-form-field>
-                  <p *ngIf="documentDateMessage[passengerIndex]" class="text-danger">
-                    {{ documentDateMessage[passengerIndex] }}
-                  </p>
-                  <mat-form-field class="col-6 col-md-4" [ngClass]="{
-                    'validation-control ': isControlInvalid(
-                      'documentNumber',
-                      'passengers',
-                      passengerIndex
-                      )
-                    }">
-                    <mat-label>Document Number</mat-label>
-                    <input type="text" matInput formControlName="documentNumber" placeholder="Document Number" />
-                  </mat-form-field>
-                </div>
+              </div>
+              <div class="form-row" *ngIf="isTripToAbroad">
+                <mat-form-field class="col-6 col-md-4" appearance="fill">
+                  <mat-label>Document Type</mat-label>
+                  <mat-select formControlName="documentType">
+                    <mat-option value="Passport">Passport</mat-option>
+                    <mat-option value="ID">ID</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-6 col-md-4" appearance="fill" [ngClass]="{
+                  'validation-control ': isControlInvalid(
+                    'documentExpirationDate',
+                    'passengers',
+                    passengerIndex
+                    )
+                  }">
+                  <mat-label>Document Expiration Date</mat-label>
+                  <input matInput [matDatepicker]="dp" formControlName="documentExpirationDate" (dateChange)="
+                      chosenDateHandler($event.value, passengerIndex, false)
+                    " />
+                  <mat-datepicker-toggle matSuffix [for]="dp"><i class="fas fa-calendar-day"></i>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #dp [startAt]="today" startView="multi-year" panelClass="example-month-picker">
+                  </mat-datepicker>
+                </mat-form-field>
+                <p *ngIf="documentDateMessage[passengerIndex]" class="text-danger">
+                  {{ documentDateMessage[passengerIndex] }}
+                </p>
+                <mat-form-field class="col-6 col-md-4" [ngClass]="{
+                  'validation-control ': isControlInvalid(
+                    'documentNumber',
+                    'passengers',
+                    passengerIndex
+                    )
+                  }">
+                  <mat-label>Document Number</mat-label>
+                  <input type="text" matInput formControlName="documentNumber" placeholder="Document Number" />
+                </mat-form-field>
               </div>
             </div>
           </div>

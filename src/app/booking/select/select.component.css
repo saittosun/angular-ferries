@@ -40,9 +40,9 @@ input[type=number] {
 .date-update-after::after {
   content: '';
   position: absolute;
-  top: -0.6px;
+  top: -0.8px;
   left: 90%;
-  border: 19.5px solid transparent;
+  border: 19.7px solid transparent;
   border-left-color: #f8f9fa;
 }
 
@@ -84,13 +84,13 @@ input[type=number] {
 .trip-major {
   margin-right: 0; 
   margin-left: 0;
-  padding-top: 5px;
+  padding-top: 8px;
   /* padding-bottom: 3px; */
 }
 
-.trip-major > div {
+/* .trip-major > div {
   padding-bottom: 3px;
-}
+} */
 
 @media(max-width: 280px) {
   .date-update-after::after {
@@ -117,6 +117,7 @@ input[type=number] {
   .trip-major {
     line-height: 16px;
     font-size: 11px;
+    padding-top: 4px;
   }
   .dictionary {
     margin-left: -15px;
@@ -165,6 +166,9 @@ input[type=number] {
   .fa-minus-circle, .fa-plus-circle {
     font-size: small;
   }
+  .passenger-add, .passenger-minus, .vehicle-add, .vehicle-minus {
+    padding: 4px;
+  }
 }
 
 @media(min-width: 281px) and (max-width: 324px) {
@@ -174,15 +178,23 @@ input[type=number] {
   }
   .date-update-before::before {
     left: -27%;
-    top: -5px;
+    top: -6px;
   }
   .date-update-before, .date-update-after {
     font-size: 9px;
     padding: 5px;
   }
+  .route-alternative-dates {
+    margin-left: 5px;
+    margin-top: 5px;
+  }
   .trip-major {
-    line-height: 10px;
-    font-size: 11px;
+    line-height: 16px;
+    font-size: 12px;
+  }
+  .trip-major-destination {
+    margin-left: -8px;
+    padding-bottom: 10px;
   }
   .dictionary-trips {
     font-size: 9px;
@@ -201,7 +213,7 @@ input[type=number] {
     margin-left: -20px;
   }
   .select-dictionary {
-    margin-left: 10px;
+    margin-left: 7px;
   }
   .logo {
     margin-left: -17px;
@@ -214,17 +226,33 @@ input[type=number] {
   .trip-time {
     margin-left: inherit;
   }
+  .trip-time-duration {
+    padding-left: inherit;
+  }
+  .exact-date {
+    padding-bottom: 8px;
+    padding-left: 12px;
+  }
   .select-dictionary-plus-icon {
     font-size: 20px;
   }
   .icon-buttons {
-    margin-left: -9px;
+    margin-left: -17px;
+    padding-top: 5px;
+    margin-right: 8px;
+  }
+  .toggle-icon {
+    vertical-align: unset;
+    margin-left: -29px;
+  }
+  .passenger-add, .passenger-minus, .vehicle-add, .vehicle-minus, .select-button {
+    padding: 4px! important;
   }
 }
 
-@media(min-width: 325px) and (max-width: 375px) {
+@media(min-width: 325px) and (max-width: 376px) {
   .date-update-after::after {
-    left: 80%;
+    left: 78%;
     top: -5px;
   }
   .date-update-before::before {
@@ -236,12 +264,14 @@ input[type=number] {
     padding: 5px;
   }
   .trip-major {
-    line-height: 10px;
-    font-size: 11px;
+    line-height: 16px;
+    font-size: 13px;
+    /* padding-bottom: 0; */
   }
   .dictionary-trips {
     font-size: 9px;
     line-height: initial;
+    padding-bottom: 1px;
   }
   .seat {
     font-size: 12px;
@@ -268,12 +298,32 @@ input[type=number] {
   }
   .trip-time {
     margin-left: inherit;
+    font-size: x-small;
+  }
+  .trip-time-duration {
+    padding-left: 0;
   }
   .select-dictionary-plus-icon {
     font-size: 20px;
   }
   .icon-buttons {
     margin-left: -9px;
+    padding-top: 5px;
+  }
+  .trip-major-destination {
+    padding-bottom: 8px;
+  }
+  .exact-date {
+    padding-bottom: 8px;
+  }
+  .toggle-icon-div {
+    margin-left: -15px;
+  }
+  .toggle-icon {
+    vertical-align: text-bottom;
+  }
+  .passenger-add, .passenger-minus, .vehicle-add, .vehicle-minus, .select-button {
+    padding: 4px! important;
   }
 }
 
@@ -282,6 +332,10 @@ input[type=number] {
     left: 80%;
     top: -5px;
   }
+  .toggle-icon {
+    vertical-align: text-bottom;
+    margin-left: -18px;
+  }
   .date-update-before::before {
     left: -20%;
     top: -5px;
@@ -290,8 +344,11 @@ input[type=number] {
     font-size: 10px;
   }
   .trip-major {
-    line-height: 10px;
-    font-size: 11px;
+    line-height: 17px;
+    font-size: 14px;
+  }
+  .trip-major-destination {
+    padding-bottom: 5px;
   }
   .dictionary-trips {
     font-size: 11px;
@@ -301,16 +358,18 @@ input[type=number] {
     font-size: initial;
   }
   .bed {
-    margin-left: -14px;
+    margin-left: -10px;
+    margin-top: 2px;
   }
   .car {
     margin-left: -11px;
+    margin-top: 2px;
   }
   .price {
     margin-left: -20px;
   }
   .select-dictionary {
-    margin-left: 10px;
+    margin-left: 14px;
   }
   .logo {
     margin-left: -14px;
@@ -322,6 +381,15 @@ input[type=number] {
   }
   .trip-time {
     margin-left: inherit;
+  }
+  .exact-date {
+    padding-bottom: 5px;
+  }
+  .icon-buttons {
+    margin-left: -10px;
+  }
+  .passenger-add, .passenger-minus, .vehicle-add, .vehicle-minus, .select-button {
+    padding: 4px! important;
   }
 }
 
@@ -380,6 +448,9 @@ input[type=number] {
 }
 
 @media(min-width: 500px) and (max-width: 576px) {
+  .icon-buttons {
+    padding-top: 5px;
+  }
   .date-update-after::after {
     left: 85%;
     top: -3px;
@@ -398,6 +469,7 @@ input[type=number] {
   .dictionary-trips {
     font-size: 11px;
     line-height: initial;
+    padding-top: 12px;
   }
   .seat {
     font-size: initial;
@@ -413,6 +485,7 @@ input[type=number] {
   }
   .select-dictionary {
     margin-left: auto;
+    margin-bottom: -7px;
   }
   .logo {
     width: 30px;
@@ -420,6 +493,9 @@ input[type=number] {
   }
   .logo-text {
     margin-left: -2px;
+  }
+  .toggle-icon {
+    vertical-align: text-bottom;
   }
 }
 
@@ -429,7 +505,7 @@ input[type=number] {
     top: -3px;
   }
   .date-update-before::before {
-    left: -15%;
+    left: -17%;
     top: -3px;
   }
   .date-update-before, .date-update-after {
@@ -438,6 +514,7 @@ input[type=number] {
   }
   .trip-major {
     line-height: initial;
+    padding-bottom: 3px;
   }
   .toggle-icon-div {
     padding-left: 5px;
@@ -445,24 +522,29 @@ input[type=number] {
   .toggle-icon {
     padding-bottom: 5px;
   }
+  .icon-buttons {
+    margin-left: auto;
+    padding-top: 6px;
+  }
   .dictionary-trips {
-    font-size: 11px;
+    font-size: 10px;
     line-height: initial;
   }
   .seat {
     font-size: initial;
   }
   .bed {
-    margin-left: -14px;
+    margin-left: -8px;
   }
   .car {
-    margin-left: -11px;
+    margin-left: -5px;
   }
   .price {
     margin-left: -15px;
   }
   .select-dictionary {
-    margin-left: auto;
+    margin-left: -10px;
+    margin-right: auto;
   }
 }
 
@@ -507,14 +589,20 @@ input[type=number] {
   .date-update-before::before {
     left: -14%;
   }
-  .logo {
+  .icon-buttons {
+    padding-top: 8px;
+  }
+  .trip-major {
+    padding-bottom: 7px;
+  }
+  /* .logo {
     width: 15px; 
     height: 15px;
-  }
-  .logo-text {
+  } */
+  /* .logo-text {
     font-size: 10px;
     line-height: initial;
-  }
+  } */
 }
 
 @media(min-width: 1201px) {
