@@ -57,3 +57,9 @@
  .input-group-addon .fa{
   font-size: 18px;
  }
+
+ @media(max-width: 320px) {
+   .login-form {
+     width: 260px;
+   }
+ }
