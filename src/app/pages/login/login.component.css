@@ -1,4 +1,3 @@
-
 .is-invalid {
   border: 1px solid red ;
 }
@@ -61,5 +60,8 @@
  @media(max-width: 320px) {
    .login-form {
      width: 260px;
+   }
+   .clearfix {
+     font-size: smaller;
    }
  }
