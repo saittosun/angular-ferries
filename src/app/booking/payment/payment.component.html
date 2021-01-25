@@ -2,51 +2,100 @@
   <app-loading-spinner></app-loading-spinner>
 </div>
 
-<div class="container mt-5" [ngClass]="{'transparent': isLoading}">
+<div class="container mt-5" [ngClass]="{ transparent: isLoading }">
   <div class="row">
     <div class="col-md-12 col-lg-5">
       <div class="card mb-1 trip-payment" *ngFor="let trip of booking.bookingRequest.trips; let tripIndex = index">
         <div class="clearfix text-white bg-dark">
-          <h2 class="pl-2 py-2 float-left">TRIP {{tripIndex +1}}</h2>
-          <p class="float-right pt-2 pr-2"><strong> {{trip.origin.name}}</strong> <strong> --
-            </strong> <strong>{{trip.destination.name}}</strong> </p>
+          <h2 class="pl-2 py-2 float-left">TRIP {{ tripIndex + 1 }}</h2>
+          <p class="float-right pt-2 pr-2">
+            <strong> {{ trip.origin.name }}</strong> <strong> -- </strong>
+            <strong>{{ trip.destination.name }}</strong>
+          </p>
         </div>
-        <p class="departure-date"> <strong>Date: </strong> {{trip.departureDateTime}} </p>
+        <p class="departure-date">
+          <strong>Date: </strong> {{ trip.departureDateTime }}
+        </p>
         <div class="col selected-trips">
-          <div class="card my-1"
-            *ngFor="let passenger of selectedTrips[tripIndex].passengers; let passengerIndex = index">
+          <div class="card my-1" *ngFor="let passenger of selectedTrips[tripIndex].passengers;
+              let passengerIndex = index">
             <div class="card-header">
-              <strong class="passenger-index">Passenger {{passengerIndex+1}} </strong>({{passenger.gender | lowercase
-              }})
+              <strong class="passenger-index">Passenger {{ passengerIndex + 1 }} </strong>({{ passenger.gender | lowercase }})
             </div>
             <div class="card-body passenger-card">
-              <p class="card-text"> <strong>Name: </strong>{{informationForm.passengers[passengerIndex].firstName}}
-                {{informationForm.passengers[passengerIndex].lastName}} <strong>Birthday:
-                </strong>{{informationForm.passengers[passengerIndex].birthDate | date}} <strong>Country:
-                </strong>{{informationForm.passengers[passengerIndex].nationality.name}}</p>
+              <p>
+                <strong>Name: </strong>{{ informationForm.passengers[passengerIndex].firstName }}
+                {{ informationForm.passengers[passengerIndex].lastName }}
+                <strong>Birthday: </strong>{{informationForm.passengers[passengerIndex].birthDate | date}}
+              </p>
+              <p  *ngIf="informationForm.passengers[passengerIndex].documentNumber">
+                <strong>Country: </strong>{{informationForm.passengers[passengerIndex].nationality.name}}
+                <strong>{{
+                    informationForm.passengers[passengerIndex].documentType
+                  }}:
+                </strong>
+                {{ informationForm.passengers[passengerIndex].documentNumber }}
+              </p>
+              
               <p *ngIf="informationForm.passengers[passengerIndex].documentNumber">
-                <strong>{{informationForm.passengers[passengerIndex].documentType}}: </strong>
-                {{informationForm.passengers[passengerIndex].documentNumber}} <strong>Expiration Date:</strong>
-                {{informationForm.passengers[passengerIndex].documentExpirationDate | date}}</p>
-              <p>Accomodation - <strong>{{passenger.availability.accommodation.name}}</strong> <strong> && </strong>
-                <strong>{{passenger.availability.availabilityType}}</strong> <strong
-                  *ngIf="passenger.passengerDiscount.name !== 'NO DISCOUNT' "> Discount -
-                  {{passenger.passengerDiscount.name}}</strong></p>
+                <strong>Expiration Date:</strong>
+                {{
+                  informationForm.passengers[passengerIndex]
+                    .documentExpirationDate | date
+                }}</p>
+              <p> Accomodation -
+                <strong>{{ passenger.availability.accommodation.name }}</strong>
+                <strong> && </strong>
+                <strong>{{ passenger.availability.availabilityType }}</strong>
+                <strong *ngIf="passenger.passengerDiscount.name !== 'NO DISCOUNT'">
+                  Discount - {{ passenger.passengerDiscount.name }}</strong>
+              </p>
+              <!-- <p class="card-text">
+                <strong>Name: </strong>{{ informationForm.passengers[passengerIndex].firstName }}
+                {{ informationForm.passengers[passengerIndex].lastName }}
+                <strong>Birthday: </strong>{{informationForm.passengers[passengerIndex].birthDate | date}}
+                <strong>Country: </strong>{{informationForm.passengers[passengerIndex].nationality.name}}
+              </p>
+              <p *ngIf="informationForm.passengers[passengerIndex].documentNumber">
+                <strong>{{
+                    informationForm.passengers[passengerIndex].documentType
+                  }}:
+                </strong>
+                {{ informationForm.passengers[passengerIndex].documentNumber }}
+                <strong>Expiration Date:</strong>
+                {{
+                  informationForm.passengers[passengerIndex]
+                    .documentExpirationDate | date
+                }}</p>
+              <p> Accomodation -
+                <strong>{{ passenger.availability.accommodation.name }}</strong>
+                <strong> && </strong>
+                <strong>{{ passenger.availability.availabilityType }}</strong>
+                <strong *ngIf="passenger.passengerDiscount.name !== 'NO DISCOUNT'">
+                  Discount - {{ passenger.passengerDiscount.name }}</strong>
+              </p> -->
             </div>
           </div>
         </div>
         <div class="col mb-1">
-          <div class="card vehicle-card" *ngFor="let vehicle of selectedTrips[tripIndex].vehicles; let vehicleIndex = index">
+          <div class="card vehicle-card" *ngFor="let vehicle of selectedTrips[tripIndex].vehicles;let vehicleIndex = index">
             <div class="card-header">
-              <strong class="vehicle-card-header">Vehicles {{vehicleIndex + 1}}</strong>
+              <strong class="vehicle-card-header">Vehicles {{ vehicleIndex + 1 }}</strong>
             </div>
             <div class="card-body plate-card">
-              <p class="card-text">Plate number: <strong>{{informationForm.vehicles[vehicleIndex].plateNumber}}</strong>
-                <strong *ngIf="informationForm.vehicles[vehicleIndex].length">|| Length:
-                  {{informationForm.vehicles[vehicleIndex].length}}</strong></p>
-              <p>Type: <strong>{{vehicle.vehicleType.name}}</strong><strong
-                  *ngIf="vehicle.vehicleDiscount.name !== 'NO DISCOUNT' ">|| Discount:
-                  {{vehicle.vehicleDiscount.name}}</strong> </p>
+              <p>
+                Plate number:
+                <strong>{{
+                  informationForm.vehicles[vehicleIndex].plateNumber
+                }}</strong>
+                <strong *ngIf="informationForm.vehicles[vehicleIndex].length"
+                  >|| Length:
+                  {{ informationForm.vehicles[vehicleIndex].length }}</strong>
+              </p>
+              <p>Type: 
+                <strong>{{ vehicle.vehicleType.name }}</strong>
+                <strong *ngIf="vehicle.vehicleDiscount.name !== 'NO DISCOUNT'">|| Discount: {{ vehicle.vehicleDiscount.name }}</strong>
+              </p>
             </div>
           </div>
         </div>
@@ -54,26 +103,40 @@
     </div>
     <div class="col-7" [style]="familyImage"></div>
   </div>
-  <hr>
-  <div>
-    <mat-checkbox [(ngModel)]="isConfirmed" [color]="'primary'">
+  <hr />
+  <div class="row">
+    <mat-checkbox class="col" [(ngModel)]="isConfirmed" [color]="'primary'">
       Check here to indicate that you have read and agree to the terms of the
       <strong (click)="openPaymentAgreementDialog()">Seretis Travel Customer Agreement</strong>
     </mat-checkbox>
   </div>
 
+
   <div>
     <h2 class="font-weight-bold text-center">Payment Methods</h2>
-    <h2 class="font-weight-bold text-center">{{customersPrice | currency:"EUR":"symbol"}}</h2>
+    <h2 class="font-weight-bold text-center">
+      {{ customersPrice | currency: "EUR":"symbol" }}
+    </h2>
   </div>
 
   <div class="row justify-content-center payment">
     <div class="col-2 text-center">
-      <input type="radio" id="a" name="editList" value="always" (click)="togglePaymentType(false)" checked>
+      <input
+        type="radio"
+        id="a"
+        name="editList"
+        value="always"
+        (click)="togglePaymentType(false)"
+        checked/>
       <label class="payment-label" for="a">Credit Card</label>
     </div>
     <div class="col-2 text-center">
-      <input type="radio" id="b" name="editList" value="never" (click)="togglePaymentType(true)">
+      <input
+        type="radio"
+        id="b"
+        name="editList"
+        value="never"
+        (click)="togglePaymentType(true)"/>
       <label class="payment-label" for="b">PayPal</label>
     </div>
   </div>
@@ -83,20 +146,26 @@
       <h2>Pay With</h2>
     </div>
     <div [hidden]="paymentType" class="col-auto">
-      <button  class="btn btn-primary font-weight-bold credit-card" (click)="payWithCreditCard()">Credit Card</button>
+      <button
+        class="btn btn-primary font-weight-bold credit-card"
+        (click)="payWithCreditCard()">
+        Credit Card
+      </button>
     </div>
     <div [hidden]="!paymentType" class="col-auto">
       <ngx-paypal [config]="payPalConfig"></ngx-paypal>
     </div>
   </div>
-  <br><br>
-  <br>
+  <br /><br />
+  <br />
   <div>
-    <h5 class="font-weight-bold text-center"
-      *ngIf="paymentType; else noComission">%3.5 Paypal commission added.
+    <h5 class="font-weight-bold text-center" *ngIf="paymentType; else noComission">
+      %3.5 Paypal commission added.
     </h5>
-    <ng-template #noComission><br></ng-template>
+    <ng-template #noComission><br /></ng-template>
   </div>
-  <div class="pay-with-error-message" *ngIf="errorMessage"> {{errorMessage}} </div>
-  <br><br>
+  <div class="pay-with-error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+  <br /><br />
 </div>
