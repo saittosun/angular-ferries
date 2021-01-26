@@ -42,9 +42,11 @@
               " [formGroupName]="passengerIndex">
               <div class="mb-2 mt-3 passengers">
                 <h3>
-                  <i class="mx-2 fas fa-male ml-2"></i> Passenger ({{
-                  passengerIndex + 1
-                  }})
+                  <!-- <i class="mx-2 fas fa-male ml-2"></i>  -->
+                  <span class="material-icons">
+                    accessibility
+                  </span>
+                  Passenger ({{passengerIndex + 1}})
                 </h3>
               </div>
               <div class="form-row">
@@ -151,9 +153,11 @@
             <div *ngFor="let vehicle of getVehicles(); let vehicleIndex = index" [formGroupName]="vehicleIndex">
               <div class="mt-3 mb-2">
                 <h3>
-                  <i class="mx-2 fas fa-car-alt ml-2"></i>Vehicle ({{
-                  vehicleIndex + 1
-                  }})
+                  <!-- <i class="mx-2 fas fa-car-alt ml-2"></i> -->
+                  <span class="material-icons">
+                    time_to_leave
+                  </span>
+                  Vehicle ({{vehicleIndex + 1}})
                 </h3>
               </div>
               <mat-form-field [ngClass]="{
